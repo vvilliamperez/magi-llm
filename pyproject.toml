@@ -1,0 +1,29 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "your_project_name"
+version = "0.1.0"
+description = "A short description of your project"
+authors = [{ name = "Your Name", email = "you@example.com" }]
+readme = "README.md"
+license = { file = "LICENSE" }
+dependencies = [
+    "openai"
+]
+
+[tool.setuptools]
+packages = ["src"]  # Ensures setuptools finds your namespace packages
+
+[project.scripts]
+your_project = "src.main:main"  # CLI entry point (if applicable)
+
+[tool.black]
+line-length = 88
+
+[tool.isort]
+profile = "black"
+
+[tool.mypy]
+strict = true
