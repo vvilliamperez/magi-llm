@@ -16,6 +16,8 @@ class MagiNetwork(DecisionMaker):
         self.level = level
         self.leaf_node = True if level == 1 else False
         self.decision_makers = []
+        self.current_decision = None
+        self.decision_maker_results = []
         self._set_up_magi_network()
 
     def _set_up_magi_network(self):
@@ -32,19 +34,31 @@ class MagiNetwork(DecisionMaker):
 
 
     def decide(self):
-        results = []
+        self.decision_maker_results = []
         for decision_maker in self.decision_makers:
             result = decision_maker.decide()
-            results.append(result)
-        # Majority vote from a list of bools.
-        # Count the number of True values and return True if the count is greater than 1
-        print(f"results from the 3 child objects: {results}")
+            self.decision_maker_results.append(result)
+
+        #print(f"results from the 3 child objects: {self.decision_maker_results}")
 
         if self.leaf_node:
-            total_network_result = results[0]
+            self.current_decision = self.decision_maker_results[0]
         else:
-            total_network_result = results.count(True) > 1
-        print(f"total result from the child objects: {total_network_result}")
-        return total_network_result
+            self.current_decision = self.decision_maker_results.count(True) > 1
+            
+        #print(f"total result from the child objects: {self.current_decision}")
+        return self.current_decision
+
+    def get_tree_representation(self, prefix=""):
+        obj_id = hex(id(self))
+        tree = f"{prefix}MagiNetwork(L{self.level}) {obj_id} -> {self.current_decision}\n"
+        
+        for i, decision_maker in enumerate(self.decision_makers):
+            is_last = i == len(self.decision_makers) - 1
+            current_prefix = prefix + ("└── " if is_last else "├── ")
+            next_prefix = prefix + ("    " if is_last else "│   ")
+            tree += decision_maker.get_tree_representation(current_prefix)
+        
+        return tree
 
 
