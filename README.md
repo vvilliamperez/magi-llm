@@ -13,7 +13,12 @@ The Magi Decision Network is a recursive trinary decision tree system inspired b
 - ASCII tree visualization of the decision process
 
 ## Implementation Status
-Currently, the decision makers (Balthazar, Casper, and Melchior) use random boolean values for testing purposes. The next step is to integrate OpenAI's API to provide actual decision-making capabilities based on the input queries.
+Currently, the decision makers (Balthazar, Casper, and Melchior) use random boolean values for testing purposes. 
+The next step is to integrate OpenAI's API to provide actual decision-making capabilities based on the input queries.
+Each machine will have a different prompt prelude that incorporates a personality aspect to add some variance to the responses.
+Ultamitely, it will have a structured json response that's a bool.
+
+
 
 ## Installation
 ```bash
