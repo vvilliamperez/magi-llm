@@ -12,9 +12,6 @@ The Magi Decision Network is a recursive trinary decision tree system inspired b
 - Majority-based decision making
 - ASCII tree visualization of the decision process
 
-## Implementation Status
-Currently, the decision makers (Balthazar, Casper, and Melchior) use random boolean values for testing purposes. The next step is to integrate OpenAI's API to provide actual decision-making capabilities based on the input queries.
-
 ## Installation
 ```bash
 git clone <repository-url>
